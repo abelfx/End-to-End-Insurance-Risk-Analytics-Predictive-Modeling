@@ -61,8 +61,135 @@ The data includes columns related to:
 - Establish a reproducible data pipeline using Data Version Control (DVC).
 - Version datasets and track changes.
 
+## Project Structure
+```
+project-root/
+│
+├── data/
+│   └── insurance_data.csv.dvc  # DVC metadata file
+│
+├── notebooks/
+│   ├── 01_data_quality.ipynb
+│   ├── 02_eda.ipynb
+│   ├── 03_stats_testing.ipynb
+│   └── 04_modeling.ipynb
+│
+├── models/
+│   ├── baseline/               # Early baseline models
+│   ├── final/                  # Final models (DVC tracked)
+│   └── shap_analysis/          # Model interpretability artifacts
+│
+├── plots/
+│   ├── loss_ratio_province.png
+│   ├── claims_postalcode.png
+│   └── top_makes_claims.png
+│
+├── reports/
+│   ├── interim/
+│   │   └── ACIS_Interim_Report.pdf
+│   └── stats_tests/
+│       └── statistical_outputs.md
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # CI/CD pipeline for linting + DVC checks
+│
+├── src/
+│   ├── data/                   # Scripts for data cleaning, loading
+│   ├── features/               # Feature engineering pipeline
+│   ├── models/                 # Training / evaluation scripts
+│   └── utils/                  # Helper functions
+│
+├── .dvc/                       # DVC tracking and metadata
+├── README.md                   # Project documentation
+└── requirements.txt            # Python dependencies
+```
+
+## ⚙️ Installation & Setup
+1. Clone the repository
+
+2. 
+```
+git clone the repo
+cd to the repo
+```
+
+3. Create a virtual environment
+```
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate     # Windows
+```
+
+5. Install dependencies
+```
+pip install -r requirements.txt
+```
+
+## 🗂️ Data Version Control (DVC) Setup
+
+This project uses DVC to track data versions and ensure full reproducibility.
+
+Pull the dataset
+```
+dvc pull
+```
+
+
+This will download the tracked dataset from the configured remote storage.
+
+To add new data versions
+
+```
+dvc add data/raw/new_dataset.csv
+git add data/raw/new_dataset.csv.dvc
+git commit -m "Added new dataset version"
+dvc push
+```
+
+### ▶️ Running the Project
+1. Run EDA
+
+Open notebooks:
+```
+jupyter notebook notebooks/01_data_quality.ipynb
+jupyter notebook notebooks/02_eda.ipynb
+```
+
+2. Run Statistical Tests
+```
+jupyter notebook notebooks/03_stats_testing.ipynb
+```
+
+4. Run Machine Learning Pipelines
+
+```
+python src/models/train_model.py
+```
+
+6. Generate SHAP Interpretability Plots
+
+```
+python src/models/shap_analysis.py
+```
+## 🧪 Tasks Completed
+
+**Task 1: EDA & Stats**
+
+- Git repository set up
+- Branch strategy implemented
+- EDA completed
+- Statistical insights documented
+
+**Task 2: Data Version Control**
+- DVC initialized
+- Local remote configured
+- Dataset versioned
+- Reproducible pipeline created
+
 ## Deliverables
 
 - A final report detailing methodologies, findings, and recommendations.
 - Well-structured and version-controlled code and notebooks.
 - Creative and insightful visualizations.
+
